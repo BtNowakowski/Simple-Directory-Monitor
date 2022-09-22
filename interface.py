@@ -7,9 +7,7 @@ def Get_MyInputValue():
     source =zero.get()
     img_dest = one.get()
     vid_dest = two.get()
-    a =[source, img_dest, vid_dest]
-
-
+    
     if os.path.exists(source) and os.path.exists(img_dest) and os.path.exists(vid_dest) and source != img_dest and source != vid_dest and img_dest != vid_dest:
         return [source,img_dest,vid_dest]
     elif not os.path.exists(source) or not os.path.exists(img_dest) or not os.path.exists(vid_dest):
@@ -18,6 +16,7 @@ def Get_MyInputValue():
     else:
         messagebox.showerror('Python Error', 'Error: One of the paths given occured multiple times! \nPlease run the application again with correct paths')
         sys.exit()
+
 def close_window():
     window.destroy()
     messagebox.showinfo('Info', 'The app will continue to run in background. \nTo completely kill the app use your task manager.')
