@@ -177,7 +177,6 @@ class Handler(FileSystemEventHandler):
 
             elif event.event_type == 'modified':
                 pass
-
 if __name__ == '__main__':
     w = Watcher()
     w.run()

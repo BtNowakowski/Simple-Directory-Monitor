@@ -31,7 +31,6 @@ window.resizable(False, False)
 window.protocol('WM_DELETE_WINDOW', close_window)
 dwnbtn = PhotoImage(file='submitbtn.png')
 
-messagebox.showinfo('Info', 'After entering desired paths and submiting them, please close the application')
 zero = StringVar()
 one = StringVar()
 two = StringVar()
