@@ -14,14 +14,24 @@ def Get_MyInputValue():
     vid_dest = two.get()
     ss_dest = three.get()
     doc_dest = four.get()
-    a = [source, img_dest,vid_dest, ss_dest, doc_dest]
-    if os.path.exists(source) and os.path.exists(img_dest) and os.path.exists(vid_dest) and os.path.exists(ss_dest) and os.path.exists(doc_dest) and len(set(a)) ==5:
+    paths = [source, img_dest,vid_dest, ss_dest, doc_dest]
+    validity = False
+    for path in paths:
+        if os.path.exists(path):
+            validity = True  
+        else:
+            validity = False
+
+    if validity == True and len(set(paths)) ==5:
         return[source,img_dest,vid_dest, ss_dest,doc_dest]
-    elif not os.path.exists(source) or not os.path.exists(img_dest) or not os.path.exists(vid_dest) or not os.path.exists(ss_dest) or not os.path.exists(doc_dest):
+    elif validity == False:
         messagebox.showerror('Python Error', 'Error: Paths given were not correct!\nPlease run the application again with correct paths')
         sys.exit()
-    else:
+    elif len(set(paths)) !=5:
         messagebox.showerror('Python Error', 'Error: One of the paths given occured multiple times! \nPlease run the application again with correct paths')
+        sys.exit()
+    else:
+        messagebox.showerror('Python Error', 'Error: Unexpected error occured. \nPlease run the application again')
         sys.exit()
 
 window =Tk()
