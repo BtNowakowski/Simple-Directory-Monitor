@@ -1,13 +1,12 @@
-from importlib.resources import path
 import time
 import shutil
 import os
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-from interface import Get_MyInputValue
+from interface import check_for_validity
 
-paths = Get_MyInputValue()
+paths = check_for_validity()
 src = paths[0]
 dst_img = paths[1]
 dst_vid = paths[2]

@@ -1,4 +1,3 @@
-from pydoc import doc
 from tkinter import*
 from tkinter import messagebox
 import os
@@ -7,23 +6,31 @@ from idlelib.tooltip import Hovertip
 def close_window():
     window.destroy()
     messagebox.showinfo('Info', 'The app currently runs in the background!\nTo completely kill the app use your task manager.')
-  
-def Get_MyInputValue():
+
+def get_inputs():
     source =zero.get()
     img_dest = one.get()
     vid_dest = two.get()
     ss_dest = three.get()
     doc_dest = four.get()
     paths = [source, img_dest,vid_dest, ss_dest, doc_dest]
-    validity = False
+    return paths
+
+def check_paths():
+    paths = get_inputs()
+    path_validity = False
     for path in paths:
         if os.path.exists(path):
-            validity = True  
+            path_validity = True  
         else:
-            validity = False
+            path_validity = False
+    return path_validity
 
+def check_for_validity():
+    validity = check_paths()
+    paths = get_inputs()
     if validity == True and len(set(paths)) ==5:
-        return[source,img_dest,vid_dest, ss_dest,doc_dest]
+        return[paths[0],paths[1],paths[2], paths[3],paths[4]]
     elif validity == False:
         messagebox.showerror('Python Error', 'Error: Paths given were not correct!\nPlease run the application again with correct paths')
         sys.exit()
@@ -88,7 +95,7 @@ MyEntryBox3.insert(0, "C:\\Users\\[WINDOWS USER]\\Pictures\\Screenshots")
 MyEntryBox4.insert(0, "C:\\Users\\[WINDOWS USER]\\Documents")
 
 Label(window, text="", font=("Arial 7 bold")).pack()
-MyTkButton = Button(window, image=dwnbtn, cursor="hand2", height=25, width=100, command= Get_MyInputValue).pack(pady=3)
+MyTkButton = Button(window, image=dwnbtn, cursor="hand2", height=25, width=100, command=check_for_validity).pack(pady=3)
 myBtn = Button(window,text='?')
 
 myTip = Hovertip(MyEntryBox,'Input format example: \nC:\\Users\\user1\\Downloads')
