@@ -1,5 +1,5 @@
 # Simple Directory Monitor
-###### Python program, which monitors, working in the background, given directory and moves all file types (currently only photos, screenshots, textfiles, and videos) to their destination path.
+###### Python program, which monitors given directory, working in the background, and moves all file types (currently photos, screenshots, textfiles, and videos) to their destination path.
 
 ## How to use:
 (1) Run the app 
