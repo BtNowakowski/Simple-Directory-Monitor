@@ -4,7 +4,8 @@
 ## How to use:
 (1) Run the app 
 (2) Enter your desired paths or replace the [WINDOWS USER] with your windows username
-(3) Close the app by clicking the [X] button in the right corner
-(4) Your app is now running in background, monitoring and sorting all your files
+(3) Click the submit button
+(4) Your app is now running in background, monitoring and sorting all your files in the directory given
+
 ## Example:
 https://user-images.githubusercontent.com/107316656/191965830-98c8166f-5a1c-48da-bb16-b79000ac2f69.mp4
