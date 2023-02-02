@@ -101,8 +101,6 @@ Label(frame, text="Directory to monitor", font=(
 
 MyEntryBox = Entry(frame, textvariable=source, width=50, font=("Calibri", 12))
 MyEntryBox.grid(row=1, column=1, padx=5, pady=5, ipady=3)
-Button(frame, text="X", height=1, width=2, cursor="hand2", command=lambda: select_directory(
-    MyEntryBox)).grid(row=1, column=2, padx=5, pady=5)
 Button(frame, text="...", height=1, width=2, cursor="hand2", command=lambda: select_directory(
     MyEntryBox)).grid(row=1, column=3, padx=5, pady=5)
 
@@ -168,12 +166,5 @@ MyEntryBox4.insert(0, EXAMPLE_DEST["documents_directory"])
 Label(window, text="", font=("Arial 7 bold")).pack()
 MyTkButton = Button(window, cursor="hand2",
                     height=1, width=10, text="Submit", command=check_for_validity).pack(pady=3)
-
-Hovertip(MyEntryBox, 'FORMAT EXAMPLE:  C:\\Users\\user1\\Downloads', hover_delay=250)
-Hovertip(MyEntryBox1, 'FORMAT EXAMPLE:  C:\\Users\\user1\\Pictures', hover_delay=250)
-Hovertip(MyEntryBox2, 'FORMAT EXAMPLE:  C:\\Users\\user1\\Videos', hover_delay=250)
-Hovertip(MyEntryBox3,
-         'FORMAT EXAMPLE:  C:\\Users\\user1\\Pictures\\Screenshots', hover_delay=250)
-Hovertip(MyEntryBox4, 'FORMAT EXAMPLE:  C:\\Users\\user1\\Documents', hover_delay=250)
 
 mainloop()
