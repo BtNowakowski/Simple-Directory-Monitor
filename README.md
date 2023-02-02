@@ -1,11 +1,15 @@
 # Simple Directory Monitor
 ###### Python program, which monitors given directory, working in the background, and moves all file types (currently photos, screenshots, textfiles, and videos) to their destination path.
 
-## How to use:
-(1) Run the app 
-(2) Enter your desired paths or replace the [WINDOWS USER] with your windows username
-(3) Click the submit button
-(4) Your app is now running in background, monitoring and sorting all your files in the directory given
+
+> ## How to use:
+>
+> - Run the app 
+> - Enter your desired paths or replace the *[WINDOWS USER]* with your windows username
+> - Click the submit button
+> - Your app is now running in background, monitoring and sorting all your files in the directory given
+>
+
 
 ## Example:
 
