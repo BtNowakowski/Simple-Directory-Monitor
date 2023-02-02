@@ -10,7 +10,7 @@ from watchdog.events import FileSystemEventHandler
 list_of_images = []
 list_of_videos = []
 list_of_screenshots = []
-list_of_documents =[]
+list_of_documents = []
 already_added= []
 
 class Watcher:
@@ -40,13 +40,33 @@ class Handler(FileSystemEventHandler):
         self.dst_img = paths[1]
         self.dst_vid = paths[2]
         self.dst_ss = paths[3]
-        self.dst_doc = paths[4]
+        self.dst_doc = paths[4]          
 
+    def move_files(self, items_list):
+        if len(items_list) > 0:
+            for item in items_list:
+                if (not os.path.exists(f'{item}')):
+                    print('The file doesnt exist') 
+                    items_list.remove(item)
+                elif(not os.path.exists(f'{self.dst_img}\\{os.path.basename(item)}')):
+                    try:
+                        shutil.copy2(item,self.dst_img)
+                        os.remove(item)
+                        print(f'{item} was moved')
+                    except PermissionError:
+                        print("No permission!")
+                    items_list.remove(item)
+                    already_added.append(item)
+                else:
+                    print('The file is already in desired path')
+                    items_list.remove(item)
+                time.sleep(2)
+    
     def on_any_event(self, event):
+
         if(event.src_path not in already_added):
             if event.is_directory:
                 return None
-                
             elif event.event_type == 'created':
                 _,ext = os.path.splitext(event.src_path)
                 fn = os.path.basename(event.src_path)
@@ -62,57 +82,7 @@ class Handler(FileSystemEventHandler):
                 else:
                     print(f'skip - {event.src_path}')
 
-
-            for name in list_of_images:
-                if (not os.path.exists(f'{name}')):
-                    print('The file doesnt exist') 
-                    list_of_images.remove(name)
-                elif(not os.path.exists(f'{self.dst_img}\\{os.path.basename(name)}')):
-                    shutil.copy2(name,self.dst_img)
-                    os.remove(name)
-                    print(f'{name} was moved')
-                    list_of_images.remove(name)
-                    already_added.append(name)
-                else:
-                    print('The image is already in the desired path')
-                    list_of_images.remove(name)
-            for name1 in list_of_videos:
-                if (not os.path.exists(f'{name1}')):
-                    print('The file doesnt exist') 
-                    list_of_images.remove(name1)
-                elif(not os.path.exists(f'{self.dst_vid}\\{os.path.basename(name1)}')):
-                    shutil.copy2(name1,self.dst_vid)
-                    os.remove(name1)
-                    print(f'{name1} was moved')
-                    list_of_videos.remove(name1)
-                    already_added.append(name1)
-                else:
-                    print('The video is already in the desired path')
-                    list_of_images.remove(name1)
-            for name1 in list_of_screenshots:
-                if (not os.path.exists(f'{name1}')):
-                    print('The file doesnt exist') 
-                    list_of_screenshots.remove(name1)
-                elif(not os.path.exists(f'{self.dst_ss}\\{os.path.basename(name1)}')):
-                    shutil.copy2(name1,self.dst_ss)
-                    os.remove(name1)
-                    print(f'{name1} was moved')
-                    list_of_screenshots.remove(name1)
-                    already_added.append(name1)
-                else:
-                    print('The screenshot is already in the desired path')
-                    list_of_screenshots.remove(name1)
-            for name in list_of_documents:
-                if (not os.path.exists(f'{name}')):
-                    print('The file doesnt exist') 
-                    list_of_documents.remove(name)
-                elif(not os.path.exists(f'{self.dst_doc}\\{os.path.basename(name)}')):
-                    shutil.copy2(name,self.dst_doc)
-                    os.remove(name)
-                    print(f'{name} was moved')
-                    list_of_documents.remove(name)
-                    already_added.append(name)
-                else:
-                    print('The document is already in the desired path')
-                    list_of_documents.remove(name)                
-            time.sleep(2)
+            self.move_files(list_of_images)
+            self.move_files(list_of_screenshots)
+            self.move_files(list_of_videos)
+            self.move_files(list_of_documents)
