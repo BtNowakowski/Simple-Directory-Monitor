@@ -42,15 +42,15 @@ class Handler(FileSystemEventHandler):
         self.dst_ss = paths[3]
         self.dst_doc = paths[4]          
 
-    def move_files(self, items_list):
-        if len(items_list) > 0:
+    def move_files(self, items_list, dest):
+        if dest != False and len(items_list) > 0:
             for item in items_list:
                 if (not os.path.exists(f'{item}')):
                     print('The file doesnt exist') 
                     items_list.remove(item)
-                elif(not os.path.exists(f'{self.dst_img}\\{os.path.basename(item)}')):
+                elif(not os.path.exists(f'{dest}\\{os.path.basename(item)}')):
                     try:
-                        shutil.copy2(item,self.dst_img)
+                        shutil.copy2(item, dest)
                         os.remove(item)
                         print(f'{item} was moved')
                     except PermissionError:
@@ -82,7 +82,7 @@ class Handler(FileSystemEventHandler):
                 else:
                     print(f'skip - {event.src_path}')
 
-            self.move_files(list_of_images)
-            self.move_files(list_of_screenshots)
-            self.move_files(list_of_videos)
-            self.move_files(list_of_documents)
+            self.move_files(list_of_images, self.dst_img)
+            self.move_files(list_of_screenshots, self.dst_ss)
+            self.move_files(list_of_videos, self.dst_vid)
+            self.move_files(list_of_documents, self.dst_doc)
