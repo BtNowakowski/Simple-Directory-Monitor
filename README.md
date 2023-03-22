@@ -5,7 +5,7 @@
  ### How to use:
 
 - Run the app 
-- Enter your desired paths by clicking the  "..." button, or replace the *[WINDOWS USER]* with your windows username
+- Enter your desired paths by clicking the  "..." button, or disable moving given files category by clicking "X" button
 - Click the submit button
 - Your app is now running in background, monitoring and sorting all your files in the directory given
 
