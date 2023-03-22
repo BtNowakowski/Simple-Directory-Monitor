@@ -7,11 +7,11 @@ from idlelib.tooltip import Hovertip
 from Watcher import Watcher
 
 
-EXAMPLE_DEST = {"monitored_directory": "C:\\Users\\[WINDOWS USER]\\Downloads",
-                "images_directory": "C:\\Users\\[WINDOWS USER]\\Pictures",
-                "videos_directory": "C:\\Users\\[WINDOWS USER]\\Videos",
-                "screenshots_directory": "C:\\Users\\[WINDOWS USER]\\Pictures\\Screenshots",
-                "documents_directory": "C:\\Users\\[WINDOWS USER]\\Documents"}
+# EXAMPLE_DEST = {"monitored_directory": "C:\\Users\\[WINDOWS USER]\\Downloads",
+#                 "images_directory": "C:\\Users\\[WINDOWS USER]\\Pictures",
+#                 "videos_directory": "C:\\Users\\[WINDOWS USER]\\Videos",
+#                 "screenshots_directory": "C:\\Users\\[WINDOWS USER]\\Pictures\\Screenshots",
+#                 "documents_directory": "C:\\Users\\[WINDOWS USER]\\Documents"}
 
 
 def select_directory(widget):
@@ -22,15 +22,15 @@ def select_directory(widget):
 def get_inputs():
     src, img, vid, ss, doc = False, False, False, False, False
 
-    if str(MyEntryBox['state']) == "normal":
+    if str(source_directory['state']) == "normal":
         src = source.get()
-    if str(MyEntryBox1['state']) == "normal":
+    if str(images_destination['state']) == "normal":
         img = images_dest.get()
-    if str(MyEntryBox2['state']) == "normal":
+    if str(videos_destination['state']) == "normal":
         vid = videos_dest.get()
-    if str(MyEntryBox3['state']) == "normal":
+    if str(screenshots_destination['state']) == "normal":
         ss = screenshots_dest.get()
-    if str(MyEntryBox4['state']) == "normal":
+    if str(documents_destination['state']) == "normal":
         doc = documents_dest.get()
 
     return [src, img, vid, ss, doc]
@@ -99,10 +99,10 @@ frame.pack(pady=10, padx=15)
 Label(frame, text="Directory to monitor", font=(
     "Calibri 17")).grid(row=0, column=0, pady=5, columnspan=4, sticky=W+E+N+S)
 
-MyEntryBox = Entry(frame, textvariable=source, width=50, font=("Calibri", 12))
-MyEntryBox.grid(row=1, column=1, padx=5, pady=5, ipady=3)
+source_directory = Entry(frame, textvariable=source, width=50, font=("Calibri", 12))
+source_directory.grid(row=1, column=1, padx=5, pady=5, ipady=3)
 Button(frame, text="...", height=1, width=2, cursor="hand2", command=lambda: select_directory(
-    MyEntryBox)).grid(row=1, column=3, padx=5, pady=5)
+    source_directory)).grid(row=1, column=3, padx=5, pady=5)
 
 frame1 = Frame(window)
 frame1.pack(pady=10, padx=10)
@@ -113,54 +113,54 @@ Label(frame1, text="Files destinations", font=(
 Label(frame1, text="Images: ").grid(
     row=2, pady=5, column=0, columnspan=1, sticky=W)
 
-MyEntryBox1 = Entry(frame1, textvariable=images_dest,
+images_destination = Entry(frame1, textvariable=images_dest,
                     width=50, font=("Calibri", 12))
-MyEntryBox1.grid(row=2, column=1, padx=5, pady=5, ipady=3)
+images_destination.grid(row=2, column=1, padx=5, pady=5, ipady=3)
 Button(frame1, text="X", height=1, width=2, cursor="hand2", command=lambda: disable_entry(
-    MyEntryBox1)).grid(row=2, column=2, padx=5, pady=5)
+    images_destination)).grid(row=2, column=2, padx=5, pady=5)
 Button(frame1, text="...", height=1, width=2, cursor="hand2", command=lambda: select_directory(
-    MyEntryBox1)).grid(row=2, column=3, padx=5, pady=5)
+    images_destination)).grid(row=2, column=3, padx=5, pady=5)
 
 
 Label(frame1, text="Videos: ").grid(
     row=4, pady=5, column=0, columnspan=1, sticky=W)
 
-MyEntryBox2 = Entry(frame1, textvariable=videos_dest,
+videos_destination = Entry(frame1, textvariable=videos_dest,
                     width=50, font=("Calibri", 12))
-MyEntryBox2.grid(row=4, column=1, padx=5, pady=5, ipady=3)
+videos_destination.grid(row=4, column=1, padx=5, pady=5, ipady=3)
 Button(frame1, text="X", height=1, width=2, cursor="hand2",  command=lambda: disable_entry(
-    MyEntryBox2)).grid(row=4, column=2, padx=5, pady=5)
+    videos_destination)).grid(row=4, column=2, padx=5, pady=5)
 Button(frame1, text="...", height=1, width=2, cursor="hand2",  command=lambda: select_directory(
-    MyEntryBox2)).grid(row=4, column=3, padx=5, pady=5)
+    videos_destination)).grid(row=4, column=3, padx=5, pady=5)
 
 Label(frame1, text="Screenshots: ").grid(
     row=6, column=0, pady=5, columnspan=1, sticky=W)
 
-MyEntryBox3 = Entry(frame1, textvariable=screenshots_dest,
+screenshots_destination = Entry(frame1, textvariable=screenshots_dest,
                     width=50, font=("Calibri", 12))
-MyEntryBox3.grid(row=6, column=1, padx=5, pady=5, ipady=3)
+screenshots_destination.grid(row=6, column=1, padx=5, pady=5, ipady=3)
 Button(frame1, text="X", height=1, width=2, cursor="hand2",  command=lambda: disable_entry(
-    MyEntryBox3)).grid(row=6, pady=5, column=2, padx=5)
+    screenshots_destination)).grid(row=6, pady=5, column=2, padx=5)
 Button(frame1, text="...", height=1, width=2, cursor="hand2",  command=lambda: select_directory(
-    MyEntryBox3)).grid(row=6, pady=5, column=3, padx=5)
+    screenshots_destination)).grid(row=6, pady=5, column=3, padx=5)
 
 Label(frame1, text="Documents: ").grid(
     row=8, column=0, columnspan=1, sticky=W)
 
-MyEntryBox4 = Entry(frame1, textvariable=documents_dest,
+documents_destination = Entry(frame1, textvariable=documents_dest,
                     width=50, font=("Calibri", 12))
-MyEntryBox4.grid(row=8, column=1, padx=5, pady=5, ipady=3)
+documents_destination.grid(row=8, column=1, padx=5, pady=5, ipady=3)
 Button(frame1, text="X", height=1, width=2, cursor="hand2",  command=lambda: disable_entry(
-    MyEntryBox4)).grid(row=8, column=2, padx=5, pady=5, sticky=W+E+N+S)
+    documents_destination)).grid(row=8, column=2, padx=5, pady=5, sticky=W+E+N+S)
 Button(frame1, text="...", height=1, width=2, cursor="hand2",  command=lambda: select_directory(
-    MyEntryBox4)).grid(row=8, column=3, padx=5, pady=5, sticky=W+E+N+S)
+    documents_destination)).grid(row=8, column=3, padx=5, pady=5, sticky=W+E+N+S)
 
 
-MyEntryBox.insert(0, EXAMPLE_DEST["monitored_directory"])
-MyEntryBox1.insert(0, EXAMPLE_DEST["images_directory"])
-MyEntryBox2.insert(0, EXAMPLE_DEST["videos_directory"])
-MyEntryBox3.insert(0, EXAMPLE_DEST["screenshots_directory"])
-MyEntryBox4.insert(0, EXAMPLE_DEST["documents_directory"])
+# source_directory.insert(0, EXAMPLE_DEST["monitored_directory"])
+# images_destination.insert(0, EXAMPLE_DEST["images_directory"])
+# videos_destination.insert(0, EXAMPLE_DEST["videos_directory"])
+# screenshots_destination.insert(0, EXAMPLE_DEST["screenshots_directory"])
+# documents_destination.insert(0, EXAMPLE_DEST["documents_directory"])
 
 
 Label(window, text="", font=("Arial 7 bold")).pack()
