@@ -164,7 +164,7 @@ Button(frame1, text="...", height=1, width=2, cursor="hand2",  command=lambda: s
 
 
 Label(window, text="", font=("Arial 7 bold")).pack()
-MyTkButton = Button(window, cursor="hand2",
+submit_button = Button(window, cursor="hand2",
                     height=1, width=10, text="Submit", command=check_for_validity).pack(pady=3)
 
 mainloop()
